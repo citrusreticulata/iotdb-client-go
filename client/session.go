@@ -87,7 +87,9 @@ func (s *Session) Open(enableRPCCompression bool, connectionTimeoutInMs int) err
 	if err != nil {
 		return err
 	}
-	s.trans = thrift.NewTFramedTransport(s.trans)
+	// s.trans = thrift.NewTFramedTransport(s.trans)	// deprecated
+	var tmp_conf = thrift.TConfiguration{MaxFrameSize: thrift.DEFAULT_MAX_FRAME_SIZE}
+	s.trans = thrift.NewTFramedTransportConf(s.trans, &tmp_conf)
 	if !s.trans.IsOpen() {
 		err = s.trans.Open()
 		if err != nil {
@@ -819,7 +821,9 @@ func NewClusterSession(ClusterConfig *ClusterConfig) Session {
 			ConnectTimeout: time.Duration(0), // Use 0 for no timeout
 		})
 		if err == nil {
-			session.trans = thrift.NewTFramedTransport(session.trans)
+			// session.trans = thrift.NewTFramedTransport(session.trans)	// deprecated
+			var tmp_conf = thrift.TConfiguration{MaxFrameSize: thrift.DEFAULT_MAX_FRAME_SIZE}
+			session.trans = thrift.NewTFramedTransportConf(session.trans, &tmp_conf)
 			if !session.trans.IsOpen() {
 				err = session.trans.Open()
 				if err != nil {
@@ -845,7 +849,9 @@ func (s *Session) initClusterConn(node endPoint) error {
 		ConnectTimeout: time.Duration(0), // Use 0 for no timeout
 	})
 	if err == nil {
-		s.trans = thrift.NewTFramedTransport(s.trans)
+		// s.trans = thrift.NewTFramedTransport(s.trans)	// deprecated
+		var tmp_conf = thrift.TConfiguration{MaxFrameSize: thrift.DEFAULT_MAX_FRAME_SIZE}
+		s.trans = thrift.NewTFramedTransportConf(s.trans, &tmp_conf)
 		if !s.trans.IsOpen() {
 			err = s.trans.Open()
 			if err != nil {
