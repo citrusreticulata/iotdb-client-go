@@ -80,7 +80,8 @@ func (s *Session) Open(enableRPCCompression bool, connectionTimeoutInMs int) err
 	var protocolFactory thrift.TProtocolFactory
 	var err error
 
-	s.trans, err = thrift.NewTSocketConf(net.JoinHostPort(s.config.Host, s.config.Port), &thrift.TConfiguration{
+	// in thrift 0.14.1, this func returns two values; in thrift 0.15.0, it returns one.
+	s.trans = thrift.NewTSocketConf(net.JoinHostPort(s.config.Host, s.config.Port), &thrift.TConfiguration{
 		ConnectTimeout: time.Duration(connectionTimeoutInMs), // Use 0 for no timeout
 	})
 	if err != nil {
@@ -814,7 +815,7 @@ func NewClusterSession(ClusterConfig *ClusterConfig) Session {
 	}
 	var err error
 	for e := endPointList.Front(); e != nil; e = e.Next() {
-		session.trans, err = thrift.NewTSocketConf(net.JoinHostPort(e.Value.(endPoint).Host, e.Value.(endPoint).Port), &thrift.TConfiguration{
+		session.trans = thrift.NewTSocketConf(net.JoinHostPort(e.Value.(endPoint).Host, e.Value.(endPoint).Port), &thrift.TConfiguration{
 			ConnectTimeout: time.Duration(0), // Use 0 for no timeout
 		})
 		if err == nil {
@@ -840,7 +841,7 @@ func NewClusterSession(ClusterConfig *ClusterConfig) Session {
 func (s *Session) initClusterConn(node endPoint) error {
 	var err error
 
-	s.trans, err = thrift.NewTSocketConf(net.JoinHostPort(node.Host, node.Port), &thrift.TConfiguration{
+	s.trans = thrift.NewTSocketConf(net.JoinHostPort(node.Host, node.Port), &thrift.TConfiguration{
 		ConnectTimeout: time.Duration(0), // Use 0 for no timeout
 	})
 	if err == nil {
