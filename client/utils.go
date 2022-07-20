@@ -25,7 +25,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/apache/iotdb-client-go/rpc"
+	// "github.com/apache/iotdb-client-go/rpc"
+	"github.com/citrusreticulata/iotdb-client-go/rpc" // REPLACE_BEFORE_PR
 )
 
 func int32ToString(n int32) string {

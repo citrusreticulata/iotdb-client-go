@@ -22,7 +22,8 @@ package client
 import (
 	"testing"
 
-	"github.com/apache/iotdb-client-go/rpc"
+	// "github.com/apache/iotdb-client-go/rpc"
+	"github.com/citrusreticulata/iotdb-client-go/rpc" // REPLACE_BEFORE_PR
 )
 
 func Test_bytesToInt32(t *testing.T) {

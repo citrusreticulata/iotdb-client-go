@@ -1,4 +1,5 @@
-module github.com/apache/iotdb-client-go
+// module github.com/apache/iotdb-client-go
+module github.com/citrusreticulata/iotdb-client-go // REPLACE_BEFORE_PR
 
 go 1.13
 

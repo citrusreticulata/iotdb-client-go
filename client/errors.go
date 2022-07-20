@@ -22,7 +22,8 @@ package client
 import (
 	"bytes"
 
-	"github.com/apache/iotdb-client-go/rpc"
+	// "github.com/apache/iotdb-client-go/rpc"
+	"github.com/citrusreticulata/iotdb-client-go/rpc" // REPLACE_BEFORE_PR
 )
 
 type BatchError struct {
