@@ -23,8 +23,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apache/iotdb-client-go/client"
-	"github.com/apache/iotdb-client-go/rpc"
+	// "github.com/apache/iotdb-client-go/client"
+	// "github.com/apache/iotdb-client-go/rpc"
+	"github.com/citrusreticulata/iotdb-client-go/client" // REPLACE_BEFORE_PR
+	"github.com/citrusreticulata/iotdb-client-go/rpc"    // REPLACE_BEFORE_PR
 	"github.com/stretchr/testify/suite"
 )
 
